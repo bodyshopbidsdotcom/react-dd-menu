@@ -1,19 +1,34 @@
 {
   "name": "react-dd-menu",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A react dropdown menu.",
-  "main": "dist/index.js",
+  "main": "lib/index",
+  "jsnext:main": "es6/index",
   "scripts": {
-    "scripts": "babel ./src/js --out-dir ./dist",
-    "styles": "sass --style expanded --line ./src/scss/react-dd-menu.scss ./dist/react-dd-menu.css && sass --style compressed ./src/scss/react-dd-menu.scss ./dist/react-dd-menu.min.css",
-    "prebuild": "rimraf dist",
-    "build": "npm run scripts && npm run styles",
-    "postbuild": "postcss --use autoprefixer ./dist/*.css -d ./dist"
+    "build": "npm run build-cjs && npm run build-es6 && rimraf umd && npm run build-umd && npm run build-min && npm run build:styles && npm run build:postcss && npm run build:cp-css",
+    "build-cjs": "rimraf lib && babel ./src -d lib",
+    "build-es6": "rimraf es6 && babel ./src -d es6 --blacklist=es6.modules",
+    "build-umd": "webpack --env=development src/js/index.js umd/snapsheet-react-dd-menu.js",
+    "build-min": "webpack --env=production src/js/index.js umd/snapsheet-react-dd-menu.min.js",
+    "build:styles": "rimraf dist && node-sass --output-style=expanded ./src/scss/react-dd-menu.scss ./dist/snapsheet-react-dd-menu.css && node-sass --output-style=compressed ./src/scss/react-dd-menu.scss ./dist/snapsheet-react-dd-menu.min.css",
+    "build:postcss": "postcss --use autoprefixer ./dist/*.css -d ./dist",
+    "build:cp-css": "mkdir ./lib/css ./es6/css && cp ./dist/*.css ./umd/ && cp ./dist/*.css ./es6/css/ && cp ./dist/*.css ./lib/css/"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mlaursen/react-dd-menu.git"
   },
+  "files": [
+    "*.md",
+    "es6/*",
+    "es6/*/**",
+    "lib/*",
+    "lib/*/**",
+    "umd/*",
+    "umd/*/**",
+    "src/*",
+    "src/*/**"
+  ],
   "keywords": [
     "react",
     "react-component",
@@ -37,19 +52,27 @@
   },
   "devDependencies": {
     "autoprefixer": "^6.0.3",
-    "babel-cli": "^6.18.0",
-    "babel-eslint": "^6.0.2",
+    "babel": "^6.23.0",
+    "babel-cli": "^6.23.0",
+    "babel-core": "^6.23.1",
+    "babel-eslint": "^6.1.2",
+    "babel-loader": "^6.4.0",
     "babel-plugin-add-module-exports": "^0.1.2",
-    "babel-preset-es2015": "^6.3.13",
-    "babel-preset-react": "^6.3.13",
-    "babel-preset-stage-0": "^6.3.13",
-    "eslint": "^2.7.0",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-react": "^6.23.0",
+    "babel-preset-stage-0": "^6.22.0",
+    "eslint": "^2.13.1",
+    "eslint-config-snapsheet": "^1.0.0",
     "eslint-loader": "^1.3.0",
     "eslint-plugin-react": "^4.3.0",
+    "node-sass": "^4.5.0",
     "postcss-cli": "^2.5.0",
-    "react": "^15.4.0",
+    "react": "^15.4.2",
     "react-addons-css-transition-group": "^15.4.0",
-    "react-dom": "^15.4.0",
-    "rimraf": "^2.5.1"
+    "react-dom": "^15.4.2",
+    "rimraf": "^2.6.1",
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.4.1"
   }
 }

@@ -29,3 +29,9 @@ node_modules
 
 example/www
 !example/www/indexTemplate.html
+
+.DS_Store
+umd
+lib
+es6
+dist
