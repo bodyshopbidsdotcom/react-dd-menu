@@ -2,8 +2,8 @@
   "name": "snapsheet-react-dd-menu",
   "version": "2.0.1",
   "description": "A react dropdown menu.",
-  "main": "lib/index",
-  "jsnext:main": "es6/index",
+  "main": "lib/js/index",
+  "jsnext:main": "es6/js/index",
   "scripts": {
     "build": "npm run build-cjs && npm run build-es6 && rimraf umd && npm run build-umd && npm run build-min && npm run build:styles && npm run build:postcss && npm run build:cp-css",
     "build-cjs": "rimraf lib && babel ./src -d lib",
