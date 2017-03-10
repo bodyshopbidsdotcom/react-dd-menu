@@ -1,6 +1,6 @@
 {
   "name": "snapsheet-react-dd-menu",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "A react dropdown menu.",
   "main": "lib/js/index",
   "jsnext:main": "es6/js/index",
@@ -47,8 +47,8 @@
   },
   "peerDependencies": {
     "react": ">= 15.3.0",
-    "react-dom": ">= 15.3.0",
-    "react-addons-css-transition-group": ">= 15.3.0"
+    "react-addons-css-transition-group": ">= 15.3.0",
+    "react-dom": ">= 15.3.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.0.3",
