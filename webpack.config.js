@@ -22,7 +22,7 @@ module.exports = function (env) {
     },
     externals: {
       classnames: {
-        root: 'classnames',
+        root: 'classNames',
         commonjs2: 'classnames',
         commonjs: 'classnames',
         amd: 'classnames'
